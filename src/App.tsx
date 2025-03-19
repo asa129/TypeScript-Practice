@@ -1,14 +1,21 @@
+import { useState } from 'react';
 import './App.css'
+import axios from 'axios'
 
 function App() {
-  const onClickGetJson = () => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then(response => console.log(response))
+  const [data, setData] = useState([]);
+
+  const onClickFetchData = () => {
+    axios('https://jsonplaceholder.typicode.com/todos')
+      .then(response => setData(response.data))
   }
 
   return (
     <>
-      <button onClick={onClickGetJson}>Jsonとるよ</button>
+      <button onClick={onClickFetchData}>Jsonとるよ</button>
+      <div>
+      {data.map((data: any) => <p>{data.title}</p>)}
+      </div>
     </>
   )
 }
