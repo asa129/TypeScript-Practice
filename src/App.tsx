@@ -4,18 +4,25 @@ import axios from 'axios'
 import { Todo } from './Todo';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [datas, setDatas] = useState<Array<TodoType>>([]);
+
+  type TodoType = {
+      userId: number;
+      id: number;
+      title: string;
+      completed: boolean;
+  };
 
   const onClickFetchData = () => {
-    axios('https://jsonplaceholder.typicode.com/todos')
-      .then(response => setData(response.data))
+    axios.get<Array<TodoType>>('https://jsonplaceholder.typicode.com/todos')
+      .then(response => setDatas(response.data))
   }
 
   return (
     <>
       <button onClick={onClickFetchData}>Jsonとるよ</button>
       <div>
-      {data.map((data: any) => <Todo title={data.title} userid={data.userid}/>)}
+      {datas.map((data) => <Todo title={data.title} userid={data.userId}/>)}
       </div>
     </>
   )
