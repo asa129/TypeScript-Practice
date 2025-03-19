@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css'
 import axios from 'axios'
+import { Todo } from './Todo';
 
 function App() {
   const [data, setData] = useState([]);
@@ -14,7 +15,7 @@ function App() {
     <>
       <button onClick={onClickFetchData}>Jsonとるよ</button>
       <div>
-      {data.map((data: any) => <p>{data.title}</p>)}
+      {data.map((data: any) => <Todo title={data.title} userid={data.userid}/>)}
       </div>
     </>
   )
