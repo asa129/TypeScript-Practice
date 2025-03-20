@@ -22,7 +22,7 @@ function App() {
     <>
       <button onClick={onClickFetchData}>Jsonとるよ</button>
       <div>
-      {datas.map((data) => <Todo title={data.title} userid={data.userId}/>)}
+      {datas.map((data) => <Todo title={data.title} userId={data.userId} completed={data.completed}/>)}
       </div>
     </>
   )
