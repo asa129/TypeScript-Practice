@@ -2,16 +2,10 @@ import { useState } from 'react';
 import './App.css'
 import axios from 'axios'
 import { Todo } from './Todo';
+import { TodoType } from './types/todo';
 
 function App() {
   const [datas, setDatas] = useState<Array<TodoType>>([]);
-
-  type TodoType = {
-      userId: number;
-      id: number;
-      title: string;
-      completed: boolean;
-  };
 
   const onClickFetchData = () => {
     axios.get<Array<TodoType>>('https://jsonplaceholder.typicode.com/todos')
